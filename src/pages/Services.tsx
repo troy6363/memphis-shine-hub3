@@ -178,16 +178,15 @@ const Services = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-card border-y border-primary/10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
+      <section className="py-16 md:py-24 bg-black border-y border-border relative overflow-hidden">
         <div className="relative container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Not Sure Which <span className="text-red-gradient">Package?</span>
+            Not Sure Which Package?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-lg">
             Call us and we'll help you choose the perfect service for your vehicle.
           </p>
-          <Button asChild size="lg" className="font-semibold shadow-xl shadow-primary/10">
+          <Button asChild size="lg" className="font-semibold shadow-xl">
             <a href="tel:662-310-3732">
               <Phone className="h-5 w-5 mr-2" />
               Call (662) 310-3732
