@@ -14,7 +14,7 @@ const specials = [
   {
     icon: Users,
     title: "Referral Reward",
-    discount: "$50 Credit",
+    discount: "$25 Credit",
     description: "When you refer a friend who books",
     terms: "Credit applied after referral's first completed service.",
   },

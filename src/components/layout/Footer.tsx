@@ -37,6 +37,26 @@ const Footer = () => {
             </nav>
           </div>
 
+          {/* Service Areas */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Service Areas</h4>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+              {[
+                "Memphis", "Cordova", "Bartlett", "Germantown",
+                "Collierville", "Lakeland", "Arlington", "Millington",
+                "Atoka", "Covington", "Oakland", "Eads", "Byhalia"
+              ].map((city) => (
+                <Link
+                  key={city}
+                  to={`/locations/${city.toLowerCase()}`}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {city}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           {/* Contact Info */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Contact</h4>

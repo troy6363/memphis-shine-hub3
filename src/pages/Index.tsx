@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Phone, Star, Shield, Award, Clock } from "lucide-react";
+import { Phone, Star, Shield, Award, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/layout/Layout";
@@ -308,6 +308,10 @@ const Index = () => {
               <p className="hero-text-element text-base md:text-lg lg:text-xl text-gray-200 mb-8 max-w-xl opacity-0 translate-y-8">
                 Premium mobile auto detailing at your convenience. We come to you
                 with meticulous attention to detail and showroom-quality results.
+              </p>
+              <p className="hero-text-element text-lg text-primary font-medium mb-8 opacity-0 translate-y-8 flex items-center gap-2">
+                <MapPin className="h-5 w-5 shrink-0" />
+                <span>We proudly serve Memphis and surrounding areas.</span>
               </p>
               <div className="hero-text-element flex flex-col sm:flex-row gap-4 opacity-0 translate-y-8">
                 <div className="relative group button-magnetic-wrapper inline-block">

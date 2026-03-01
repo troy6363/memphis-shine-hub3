@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Phone, MapPin, Clock, Facebook, Instagram, Send, CheckCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -76,16 +77,32 @@ const Contact = () => {
                 </Card>
 
                 <Card className="bg-card border-border">
-                  <CardContent className="p-6 flex items-center gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
+                  <CardContent className="p-6 flex items-start gap-4">
+                    <div className="bg-primary/10 p-3 rounded-full mt-1">
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Service Area</p>
                       <p className="text-lg font-semibold text-foreground">
-                        Cordova, TN 38016
+                        Cordova, TN & Surrounding Areas
                       </p>
-                      <p className="text-sm text-muted-foreground">Mobile Service - We Come To You!</p>
+                      <p className="text-sm text-muted-foreground mb-3">Mobile Service - We Come To You!</p>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {[
+                          "Memphis", "Cordova", "Bartlett", "Germantown",
+                          "Collierville", "Lakeland", "Arlington", "Millington",
+                          "Atoka", "Covington", "Oakland", "Eads", "Byhalia"
+                        ].map((city) => (
+                          <Link
+                            key={city}
+                            to={`/locations/${city.toLowerCase()}`}
+                            className="flex items-center gap-1.5 whitespace-nowrap hover:text-primary transition-colors group/city"
+                          >
+                            <div className="h-1 w-1 rounded-full bg-primary group-hover/city:scale-150 transition-transform" />
+                            <span className="text-xs text-muted-foreground group-hover/city:text-primary">{city}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
