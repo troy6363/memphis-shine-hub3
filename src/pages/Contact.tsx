@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Phone, MapPin, Clock, Facebook, Instagram, Send, CheckCircle, Mail } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Phone, MapPin, Clock, Facebook, Instagram, Send, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +10,7 @@ import Layout from "@/components/layout/Layout";
 
 const Contact = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,16 +19,35 @@ const Contact = () => {
     service: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    setSubmitting(true);
+
+    try {
+      const response = await fetch(
+        "https://hooks.zapier.com/hooks/catch/21053587/u08lvzs/",
+        {
+          method: "POST",
+          body: JSON.stringify({ ...formData, tags: "contact form" }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      navigate("/thank-you");
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or call us directly at (662) 310-3732.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -164,117 +184,102 @@ const Contact = () => {
             <div>
               <h2 className="text-2xl font-bold text-foreground mb-8">Request a Quote</h2>
 
-              {submitted ? (
-                <Card className="bg-card border-border">
-                  <CardContent className="p-12 text-center">
-                    <CheckCircle className="h-16 w-16 text-primary mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-foreground mb-2">Thank You!</h3>
-                    <p className="text-muted-foreground mb-6">
-                      We've received your message and will get back to you within 24 hours.
-                    </p>
-                    <Button onClick={() => setSubmitted(false)} variant="outline">
-                      Send Another Message
+              <Card className="bg-card border-border">
+                <CardContent className="p-6">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          Name *
+                        </label>
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          Phone *
+                        </label>
+                        <Input
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          required
+                          placeholder="(662) 555-0000"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Email
+                      </label>
+                      <Input
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="your@email.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Vehicle (Year, Make, Model)
+                      </label>
+                      <Input
+                        name="vehicle"
+                        value={formData.vehicle}
+                        onChange={handleChange}
+                        placeholder="2024 Chevrolet Corvette"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Service Interested In
+                      </label>
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        <option value="">Select a service</option>
+                        <option value="exterior">Exterior Wash</option>
+                        <option value="touchup">Touch Up</option>
+                        <option value="full">Full Detail</option>
+                        <option value="premier">Premier Package</option>
+                        <option value="ceramic">Ceramic Coating</option>
+                        <option value="other">Other / Not Sure</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Additional Details
+                      </label>
+                      <Textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your vehicle's condition or any specific concerns..."
+                        rows={4}
+                      />
+                    </div>
+
+                    <Button type="submit" className="w-full" size="lg" disabled={submitting}>
+                      <Send className="h-4 w-4 mr-2" />
+                      {submitting ? "Sending..." : "Send Request"}
                     </Button>
-                  </CardContent>
-                </Card>
-              ) : (
-                <Card className="bg-card border-border">
-                  <CardContent className="p-6">
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-foreground mb-2">
-                            Name *
-                          </label>
-                          <Input
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            placeholder="Your name"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-foreground mb-2">
-                            Phone *
-                          </label>
-                          <Input
-                            name="phone"
-                            type="tel"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            placeholder="(662) 555-0000"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Email
-                        </label>
-                        <Input
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="your@email.com"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Vehicle (Year, Make, Model)
-                        </label>
-                        <Input
-                          name="vehicle"
-                          value={formData.vehicle}
-                          onChange={handleChange}
-                          placeholder="2024 Chevrolet Corvette"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Service Interested In
-                        </label>
-                        <select
-                          name="service"
-                          value={formData.service}
-                          onChange={handleChange}
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                        >
-                          <option value="">Select a service</option>
-                          <option value="exterior">Exterior Wash</option>
-                          <option value="touchup">Touch Up</option>
-                          <option value="full">Full Detail</option>
-                          <option value="premier">Premier Package</option>
-                          <option value="ceramic">Ceramic Coating</option>
-                          <option value="other">Other / Not Sure</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Additional Details
-                        </label>
-                        <Textarea
-                          name="message"
-                          value={formData.message}
-                          onChange={handleChange}
-                          placeholder="Tell us about your vehicle's condition or any specific concerns..."
-                          rows={4}
-                        />
-                      </div>
-
-                      <Button type="submit" className="w-full" size="lg">
-                        <Send className="h-4 w-4 mr-2" />
-                        Send Request
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-              )}
+                  </form>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
