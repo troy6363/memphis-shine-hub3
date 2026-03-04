@@ -67,6 +67,12 @@ const Booking = () => {
             <Helmet>
                 <title>Book a Detail | Gleam Mobile Detailing Memphis</title>
                 <meta name="description" content="Schedule your mobile detailing appointment online. Choose a service, pick a date, and we'll come to you. Serving Memphis & the Mid-South." />
+                <link rel="canonical" href="https://gleammobiledetailing.com/booking" />
+                <meta property="og:title" content="Book a Mobile Detail | Gleam Mobile Detailing Memphis" />
+                <meta property="og:description" content="Schedule your mobile detailing online. Choose a service and pick a date. We come to you in Memphis & the Mid-South." />
+                <meta property="og:url" content="https://gleammobiledetailing.com/booking" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary" />
             </Helmet>
             {/* Hero */}
             <section className="relative py-24 md:py-28 overflow-hidden">

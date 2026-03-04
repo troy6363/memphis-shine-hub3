@@ -277,6 +277,16 @@ const Index = () => {
       <Helmet>
         <title>Gleam Mobile Detailing | Memphis & Mid-South Mobile Auto Detailing</title>
         <meta name="description" content="Premium mobile auto detailing in Memphis, Cordova, Germantown, Collierville & the Mid-South. Full details, interior cleaning, paint correction & ceramic coating. We come to you!" />
+        <link rel="canonical" href="https://gleammobiledetailing.com/" />
+        <meta property="og:title" content="Gleam Mobile Detailing | Memphis Mobile Auto Detailing" />
+        <meta property="og:description" content="Premium mobile auto detailing in Memphis & the Mid-South. Full details, interior cleaning, paint correction & ceramic coating. We come to you!" />
+        <meta property="og:url" content="https://gleammobiledetailing.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://gleammobiledetailing.com/assets/camaro-detail.jpeg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gleam Mobile Detailing | Memphis Mobile Auto Detailing" />
+        <meta name="twitter:description" content="Premium mobile auto detailing in Memphis & the Mid-South. We come to you!" />
+        <meta name="twitter:image" content="https://gleammobiledetailing.com/assets/camaro-detail.jpeg" />
       </Helmet>
       {/* Hero Section with Scroll Animation */}
       <section ref={heroRef} className="relative h-screen w-full overflow-hidden">

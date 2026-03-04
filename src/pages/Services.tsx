@@ -142,6 +142,13 @@ const Services = () => {
       <Helmet>
         <title>Detailing Services & Pricing | Gleam Mobile Detailing Memphis</title>
         <meta name="description" content="View our detailing packages: Gleam Full Detail from $265, Deep Interior Detail from $165, Enhanced Detail, Exterior Wash & add-ons. Sedan to SUV pricing. Book online." />
+        <link rel="canonical" href="https://gleammobiledetailing.com/services" />
+        <meta property="og:title" content="Auto Detailing Services & Pricing | Gleam Mobile Detailing" />
+        <meta property="og:description" content="View packages from $60-$375+. Full detail, interior clean, enhanced detail, exterior wash & add-ons. Memphis mobile detailing." />
+        <meta property="og:url" content="https://gleammobiledetailing.com/services" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Detailing Services & Pricing | Gleam Mobile Detailing" />
       </Helmet>
       {/* Hero */}
       <section className="relative py-24 md:py-32">

@@ -61,6 +61,12 @@ const About = () => {
       <Helmet>
         <title>About Us | Gleam Mobile Detailing - Memphis Auto Detailing Since 2017</title>
         <meta name="description" content="Meet the team behind Memphis's top-rated mobile detailing service. A+ BBB rated with 8+ years of experience. Quality products, expert techniques, and customer-first service." />
+        <link rel="canonical" href="https://gleammobiledetailing.com/about" />
+        <meta property="og:title" content="About Gleam Mobile Detailing | Memphis Since 2017" />
+        <meta property="og:description" content="A+ BBB rated mobile detailing with 8+ years of experience serving Memphis & the Mid-South." />
+        <meta property="og:url" content="https://gleammobiledetailing.com/about" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
       </Helmet>
       {/* Hero */}
       <section className="relative py-24 md:py-32">

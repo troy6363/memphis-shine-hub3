@@ -62,6 +62,12 @@ const Specials = () => {
       <Helmet>
         <title>Current Specials & Deals | Gleam Mobile Detailing Memphis</title>
         <meta name="description" content="Save on premium detailing. 15% off first-time customers, $25 referral credit, and 20% off maintenance plans. Limited-time offers in Memphis & Mid-South." />
+        <link rel="canonical" href="https://gleammobiledetailing.com/specials" />
+        <meta property="og:title" content="Specials & Deals | Gleam Mobile Detailing Memphis" />
+        <meta property="og:description" content="15% off first detail, $25 referral credit, 20% off maintenance plans. Memphis mobile detailing deals." />
+        <meta property="og:url" content="https://gleammobiledetailing.com/specials" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
       </Helmet>
       {/* Hero */}
       <section className="relative py-24 md:py-32 overflow-hidden">

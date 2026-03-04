@@ -62,6 +62,12 @@ const Contact = () => {
       <Helmet>
         <title>Contact Us | Gleam Mobile Detailing Memphis</title>
         <meta name="description" content="Request a quote or call (662) 310-3732. Gleam Mobile Detailing serves Memphis, Cordova, Germantown, Collierville & the Mid-South with premium mobile auto detailing." />
+        <link rel="canonical" href="https://gleammobiledetailing.com/contact" />
+        <meta property="og:title" content="Contact Gleam Mobile Detailing Memphis" />
+        <meta property="og:description" content="Request a quote or call (662) 310-3732. Premium mobile auto detailing in Memphis & the Mid-South." />
+        <meta property="og:url" content="https://gleammobiledetailing.com/contact" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
       </Helmet>
       {/* Hero */}
       <section className="py-24 md:py-32 bg-card">
