@@ -413,6 +413,7 @@ const Index = () => {
                   <img
                     src={item.src}
                     alt={item.alt}
+                    loading="lazy"
                     className="w-full h-[250px] md:h-[300px] object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
                 )}
