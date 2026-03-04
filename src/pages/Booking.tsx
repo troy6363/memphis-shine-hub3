@@ -77,15 +77,15 @@ const Booking = () => {
             {/* Hero */}
             <section className="relative py-24 md:py-28 overflow-hidden">
                 <video
-                    ref={videoRef}
+                    key="/assets/booking-final.mp4"
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ filter: "brightness(0.5)" }}
+                    poster="/assets/booking-poster.jpg"
+                    className="absolute inset-0 w-full h-full object-cover opacity-50"
                 >
-                    <source src="/assets/booking-hero.mp4" type="video/mp4" />
+                    <source src="/assets/booking-final.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-background/60" />
                 <div className="relative container mx-auto px-4 text-center z-10">

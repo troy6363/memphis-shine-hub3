@@ -73,14 +73,16 @@ const Specials = () => {
       <section className="relative py-24 md:py-32 overflow-hidden">
         <video
           ref={videoRef}
+          key="/assets/specials-final.mp4"
           autoPlay
           muted
           loop
           playsInline
+          poster="/assets/specials-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: "brightness(0.5)" }}
         >
-          <source src="/assets/specials.mp4" type="video/mp4" />
+          <source src="/assets/specials-final.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-background/60" />
         <div className="relative container mx-auto px-4 text-center z-10">
