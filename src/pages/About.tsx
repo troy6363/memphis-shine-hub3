@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Shield, Award, Heart, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -57,6 +58,10 @@ const About = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>About Us | Gleam Mobile Detailing - Memphis Auto Detailing Since 2017</title>
+        <meta name="description" content="Meet the team behind Memphis's top-rated mobile detailing service. A+ BBB rated with 8+ years of experience. Quality products, expert techniques, and customer-first service." />
+      </Helmet>
       {/* Hero */}
       <section className="relative py-24 md:py-32">
         <div

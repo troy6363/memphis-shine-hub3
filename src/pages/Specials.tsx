@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Gift, Users, Calendar, Star, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -58,6 +59,10 @@ const Specials = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Current Specials & Deals | Gleam Mobile Detailing Memphis</title>
+        <meta name="description" content="Save on premium detailing. 15% off first-time customers, $25 referral credit, and 20% off maintenance plans. Limited-time offers in Memphis & Mid-South." />
+      </Helmet>
       {/* Hero */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <video

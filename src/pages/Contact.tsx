@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Phone, MapPin, Clock, Facebook, Instagram, Send, Mail } from "lucide-react";
@@ -58,6 +59,10 @@ const Contact = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Contact Us | Gleam Mobile Detailing Memphis</title>
+        <meta name="description" content="Request a quote or call (662) 310-3732. Gleam Mobile Detailing serves Memphis, Cordova, Germantown, Collierville & the Mid-South with premium mobile auto detailing." />
+      </Helmet>
       {/* Hero */}
       <section className="py-24 md:py-32 bg-card">
         <div className="container mx-auto px-4 text-center">

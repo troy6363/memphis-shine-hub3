@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Check, Phone, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -138,6 +139,10 @@ const addons = [
 const Services = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Detailing Services & Pricing | Gleam Mobile Detailing Memphis</title>
+        <meta name="description" content="View our detailing packages: Gleam Full Detail from $265, Deep Interior Detail from $165, Enhanced Detail, Exterior Wash & add-ons. Sedan to SUV pricing. Book online." />
+      </Helmet>
       {/* Hero */}
       <section className="relative py-24 md:py-32">
         <div

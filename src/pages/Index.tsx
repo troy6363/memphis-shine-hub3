@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Phone, Star, Shield, Award, Clock, MapPin } from "lucide-react";
@@ -273,6 +274,10 @@ const Index = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Gleam Mobile Detailing | Memphis & Mid-South Mobile Auto Detailing</title>
+        <meta name="description" content="Premium mobile auto detailing in Memphis, Cordova, Germantown, Collierville & the Mid-South. Full details, interior cleaning, paint correction & ceramic coating. We come to you!" />
+      </Helmet>
       {/* Hero Section with Scroll Animation */}
       <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
         <video

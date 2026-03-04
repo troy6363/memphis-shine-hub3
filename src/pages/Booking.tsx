@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -63,6 +64,10 @@ const Booking = () => {
 
     return (
         <Layout>
+            <Helmet>
+                <title>Book a Detail | Gleam Mobile Detailing Memphis</title>
+                <meta name="description" content="Schedule your mobile detailing appointment online. Choose a service, pick a date, and we'll come to you. Serving Memphis & the Mid-South." />
+            </Helmet>
             {/* Hero */}
             <section className="relative py-24 md:py-28 overflow-hidden">
                 <video
