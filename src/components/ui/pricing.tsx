@@ -7,73 +7,77 @@ import NumberFlow from "@number-flow/react";
 import { Briefcase, CheckCheck, Database, Server } from "lucide-react";
 import { motion } from "motion/react";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const plans = [
     {
-        name: "Standard Detail",
+        name: "Deep Interior Detail",
         description:
-            "Perfect for maintaining your vehicle's shine and protection",
-        price: 150,
-        yearlyPrice: 120, // Discounted rate logic preserved from example
+            "Designed for vehicles that need a deep interior reset. Ideal for buildup, stains, pet hair, and heavily used interiors.",
+        price: 165,
+        yearlyPrice: 275,
         buttonText: "Book Now",
         buttonVariant: "outline" as const,
         features: [
-            { text: "Hand Wash & Dry", icon: <Briefcase size={20} /> },
-            { text: "Interior Vacuum", icon: <Database size={20} /> },
-            { text: "Tire Dressing", icon: <Server size={20} /> },
+            { text: "Steam Cleaning", icon: <Briefcase size={20} /> },
+            { text: "Upholstery Care", icon: <Database size={20} /> },
+            { text: "Odor Treatment", icon: <Server size={20} /> },
         ],
         includes: [
             "Includes:",
-            "Exterior Foam Wash",
-            "Wheel Cleaning",
-            "Interior Wipe Down",
-            "Window Cleaning",
-            "Door Jambs Cleaning",
+            "Thorough Interior Vacuum",
+            "Carpet & Seat Steam Cleaning",
+            "Upholstery Cleaning & Conditioning",
+            "Air-Compressed Vent Cleaning",
+            "Door Panels & Console Detailed",
+            "Interior Glass Cleaned",
         ],
     },
     {
-        name: "Premium Polish",
+        name: "Gleam Full Detail",
         description:
-            "Our signature service for deep gloss and paint correction",
-        price: 350,
-        yearlyPrice: 300,
+            "A comprehensive deep clean inside and out. Ideal for vehicles with moderate to heavy buildup that require extra attention.",
+        price: 265,
+        yearlyPrice: 325,
         buttonText: "Book Now",
         buttonVariant: "default" as const,
         popular: true,
         features: [
-            { text: "Paint Correction", icon: <Briefcase size={20} /> },
-            { text: "Ceramic Sealant", icon: <Database size={20} /> },
+            { text: "Full Interior & Exterior", icon: <Briefcase size={20} /> },
+            { text: "Paint Sealant", icon: <Database size={20} /> },
             { text: "Leather Conditioning", icon: <Server size={20} /> },
         ],
         includes: [
-            "Everything in Standard, plus:",
-            "Clay Bar Treatment",
-            "1-Step Machine Polish",
-            "Leather Cleaning & Conditioning",
-            "Carpet Shampoo",
-            "Engine Bay Detail",
+            "Includes:",
+            "Hand Wash & Dry",
+            "Carpet & Seat Steam Cleaning",
+            "Leather Cleaned & Conditioned",
+            "Full Interior Wipe Down & Sanitation",
+            "Door Jambs Cleaned",
+            "3–6 Month Paint Sealant",
         ],
     },
     {
-        name: "Ceramic Coating",
+        name: "Enhanced Detail",
         description:
-            "Ultimate protection with multi-year durability warranty",
-        price: 850,
-        yearlyPrice: 800,
+            "A balanced service for vehicles that are regularly cleaned but need more than a basic wash.",
+        price: 165,
+        yearlyPrice: 275,
         buttonText: "Book Now",
         buttonVariant: "outline" as const,
         features: [
-            { text: "5-Year Protection", icon: <Briefcase size={20} /> },
-            { text: "9H Hardness", icon: <Database size={20} /> },
-            { text: "Hydrophobic", icon: <Server size={20} /> },
+            { text: "Hand Wash & Dry", icon: <Briefcase size={20} /> },
+            { text: "Interior Touch-Up", icon: <Database size={20} /> },
+            { text: "Paint Protection", icon: <Server size={20} /> },
         ],
         includes: [
-            "Everything in Premium, plus:",
-            "Multi-Stage Paint Correction",
-            "5-Year Ceramic Coating",
-            "Wheel Ceramic Coating",
-            "Glass Coating",
-            "Interior Fabric Guard",
+            "Includes:",
+            "Hand Wash & Dry",
+            "Interior Vacuum & Wipe Down",
+            "Wheel & Tire Cleaning",
+            "Tire Dressing",
+            "Door Jambs Cleaned",
+            "3-Month Paint Sealant",
         ],
     },
 ];
@@ -197,7 +201,7 @@ export default function PricingSection5() {
                             delay: 0,
                         }}
                     >
-                        Choose the Perfect Shine
+                        Most Booked Services
                     </VerticalCutReveal>
                 </h2>
 
@@ -258,24 +262,24 @@ export default function PricingSection5() {
                                     {plan.description}
                                 </p>
                                 <div className="flex items-baseline">
-                                    <span className="text-4xl font-semibold text-black">
+                                    <span className="text-4xl font-semibold text-foreground">
                                         $
                                         <NumberFlow
                                             format={{
                                                 currency: "USD",
                                             }}
                                             value={isYearly ? plan.yearlyPrice : plan.price}
-                                            className="text-4xl font-semibold text-black"
+                                            className="text-4xl font-semibold text-foreground"
                                         />
                                     </span>
                                     <span className="text-muted-foreground ml-1">
-                                        /start
+                                        + starting
                                     </span>
                                 </div>
                             </CardHeader>
 
                             <CardContent className="pt-0 flex-grow flex flex-col justify-end">
-                                <a href="tel:662-310-3732" className="w-full">
+                                <Link to="/booking" className="w-full">
                                     <button
                                         className={`w-full mb-6 p-4 text-lg rounded-xl transition-[background-color,border-color,color,box-shadow,filter] duration-300 ${plan.popular
                                             ? "bg-gradient-to-t from-primary to-primary/80 shadow-lg shadow-primary/20 border border-primary text-primary-foreground hover:brightness-110"
@@ -284,7 +288,7 @@ export default function PricingSection5() {
                                     >
                                         {plan.buttonText}
                                     </button>
-                                </a>
+                                </Link>
 
                                 <div className="space-y-3 pt-4 border-t border-border">
                                     <h4 className="font-medium text-base text-foreground mb-3">

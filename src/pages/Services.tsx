@@ -1,4 +1,5 @@
 import { Check, Phone, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/layout/Layout";
@@ -225,7 +226,7 @@ const Services = () => {
                     </div>
                   </div>
                   <Button asChild className="w-full mt-8" variant={pkg.popular ? "default" : "outline"}>
-                    <a href="tel:662-310-3732">Book This Package</a>
+                    <Link to="/booking">Book This Package</Link>
                   </Button>
                 </CardContent>
               </Card>

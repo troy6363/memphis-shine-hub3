@@ -2,6 +2,7 @@ import { Gift, Users, Calendar, Star, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/layout/Layout";
+import { useEffect, useRef } from "react";
 
 const specials = [
   {
@@ -22,17 +23,56 @@ const specials = [
     icon: Calendar,
     title: "Maintenance Plan",
     discount: "20% OFF",
-    description: "Book monthly details and save",
-    terms: "Minimum 3-month commitment. Same vehicle.",
+    description: "Book Weekly, Bi-Weekly, or Monthly Details to save",
+    terms: "Minimum 3-month commitment required.",
   },
 ];
 
 const Specials = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 0.5;
+      video.style.transition = "opacity 0.3s ease";
+
+      const handleLoaded = () => { video.playbackRate = 0.5; };
+      const handleTimeUpdate = () => {
+        const fadeOutPoint = video.duration - 0.6;
+        if (video.currentTime >= fadeOutPoint) {
+          video.style.opacity = "0";
+        } else if (video.currentTime < 0.3) {
+          video.style.opacity = "1";
+        }
+      };
+
+      video.addEventListener("loadeddata", handleLoaded);
+      video.addEventListener("timeupdate", handleTimeUpdate);
+      return () => {
+        video.removeEventListener("loadeddata", handleLoaded);
+        video.removeEventListener("timeupdate", handleTimeUpdate);
+      };
+    }
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-24 md:py-32 bg-card">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "brightness(0.5)" }}
+        >
+          <source src="/assets/specials.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/60" />
+        <div className="relative container mx-auto px-4 text-center z-10">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Current <span className="text-red-gradient">Specials</span>
           </h1>

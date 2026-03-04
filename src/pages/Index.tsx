@@ -276,14 +276,14 @@ const Index = () => {
       {/* Hero Section with Scroll Animation */}
       <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
         <video
-          key="/assets/carwash1.mp4"
+          key="/assets/carwash1_optimized.mp4"
           autoPlay
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/carwash1.mp4?v=1" type="video/mp4" />
+          <source src="/assets/carwash1_optimized.mp4?v=2" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/40 z-20" />
         <div className="relative z-30 h-full flex items-center">
