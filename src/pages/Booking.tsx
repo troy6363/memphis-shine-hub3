@@ -12,10 +12,10 @@ const Booking = () => {
     useEffect(() => {
         const video = videoRef.current;
         if (video) {
-            video.playbackRate = 0.25;
+            video.playbackRate = 0.1;
             video.style.transition = "opacity 0.3s ease";
 
-            const handleLoaded = () => { video.playbackRate = 0.25; };
+            const handleLoaded = () => { video.playbackRate = 0.1; };
             const handleTimeUpdate = () => {
                 const fadeOutPoint = video.duration - 0.6;
                 if (video.currentTime >= fadeOutPoint) {
