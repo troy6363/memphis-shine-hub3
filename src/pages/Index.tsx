@@ -20,6 +20,12 @@ import shopExterior from "@/assets/shop-exterior.jpeg";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -287,7 +293,58 @@ const Index = () => {
         <meta name="twitter:title" content="Gleam Mobile Detailing | Memphis Mobile Auto Detailing" />
         <meta name="twitter:description" content="Premium mobile auto detailing in Memphis & the Mid-South. We come to you!" />
         <meta name="twitter:image" content="https://gleammobiledetailing.com/assets/camaro-detail.jpeg" />
+
+        {/* AEO/SEO FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Do you need access to water or power?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, our mobile units are fully self-contained. We bring our own purified water and power supply, so we can detail your vehicle anywhere—at home, at work, or even in a parking lot."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does a full detail take?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A Gleam Full Detail typically takes between 4 to 6 hours depending on the size and condition of the vehicle. We take our time to ensure every inch of your car is meticulously cleaned."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What areas do you serve?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We serve Memphis and the surrounding Mid-South areas, including Cordova, Germantown, Collierville, Bartlett, Lakeland, Arlington, and more."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need to be present for the appointment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Not necessarily! As long as we have access to the vehicle and a way to coordinate payment, you can go about your day while we bring the gleam to you."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How often should I get my car detailed?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most daily drivers, we recommend a professional detail every 4-6 months to maintain protection and keep the interior fresh."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
+
       {/* Hero Section with Scroll Animation */}
       <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
         <video
@@ -462,6 +519,63 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-card border-t border-border">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Frequently Asked <span className="text-red-gradient">Questions</span>
+            </h2>
+            <p className="text-muted-foreground">
+              Everything you need to know about our mobile detailing process.
+            </p>
+          </div>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1" className="border-border">
+              <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary hover:no-underline transition-colors">
+                Do you need access to water or power?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                No, our mobile units are fully self-contained. We bring our own purified water and power supply, so we can detail your vehicle anywhere—at home, at work, or even in a parking lot.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2" className="border-border">
+              <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary hover:no-underline transition-colors">
+                How long does a full detail take?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                A Gleam Full Detail typically takes between 4 to 6 hours depending on the size and condition of the vehicle. We take our time to ensure every inch of your car is meticulously cleaned.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3" className="border-border">
+              <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary hover:no-underline transition-colors">
+                What areas do you serve?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                We serve Memphis and the surrounding Mid-South areas, including Cordova, Germantown, Collierville, Bartlett, Lakeland, Arlington, and more.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4" className="border-border">
+              <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary hover:no-underline transition-colors">
+                Do I need to be present for the appointment?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                Not necessarily! As long as we have access to the vehicle and a way to coordinate payment, you can go about your day while we bring the gleam to you.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-5" className="border-border last:border-0">
+              <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary hover:no-underline transition-colors">
+                How often should I get my car detailed?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                For most daily drivers, we recommend a professional detail every 4-6 months to maintain the paint's protection and keep the interior fresh. Vehicles with ceramic coatings may require less frequent deep cleans.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </section>
+
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-b from-card via-background to-background relative overflow-hidden">
