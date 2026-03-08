@@ -51,11 +51,11 @@ const Header = () => {
       <div className="bg-primary text-primary-foreground py-2">
         <div className="container mx-auto px-4 flex justify-center md:justify-end">
           <a
-            href="tel:662-310-3732"
+            href="tel:1-877-460-1756"
             className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity"
           >
             <Phone className="h-4 w-4" />
-            <span>Call Now: (662) 310-3732</span>
+            <span>Call Now: 1-877-460-1756</span>
           </a>
         </div>
       </div>
@@ -115,7 +115,7 @@ const Header = () => {
           {/* CTA Button - Desktop */}
           <div className="hidden md:block">
             <Button asChild className="font-semibold">
-              <a href="tel:662-310-3732">
+              <a href="tel:1-877-460-1756">
                 <Phone className="h-4 w-4 mr-2" />
                 Book Now
               </a>
@@ -180,9 +180,9 @@ const Header = () => {
               </React.Fragment>
             ))}
             <Button asChild className="mt-4 font-semibold">
-              <a href="tel:662-310-3732">
+              <a href="tel:1-877-460-1756">
                 <Phone className="h-4 w-4 mr-2" />
-                Call (662) 310-3732
+                Call 1-877-460-1756
               </a>
             </Button>
           </nav>

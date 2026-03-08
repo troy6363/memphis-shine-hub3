@@ -163,7 +163,7 @@ const About = () => {
             Schedule your detail today and see why Memphis chooses Gleam Mobile Detailing.
           </p>
           <Button asChild size="lg" variant="secondary" className="font-semibold">
-            <a href="tel:662-310-3732">Call (662) 310-3732</a>
+            <a href="tel:1-877-460-1756">Call 1-877-460-1756</a>
           </Button>
         </div>
       </section>

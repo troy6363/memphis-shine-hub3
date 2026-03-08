@@ -332,10 +332,10 @@ const Index = () => {
               <div className="hero-text-element flex flex-col sm:flex-row gap-4 opacity-0 translate-y-8">
                 <div className="relative group button-magnetic-wrapper inline-block">
                   <Button asChild size="lg" className="text-base md:text-lg font-semibold px-6 md:px-8 shadow-xl shadow-primary/30 w-full sm:w-auto relative group overflow-hidden transition-transform duration-300">
-                    <a href="tel:662-310-3732">
+                    <a href="tel:1-877-460-1756">
                       <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
                       <Phone className="h-5 w-5 mr-2" />
-                      Call (662) 310-3732
+                      Call 1-877-460-1756
                     </a>
                   </Button>
                 </div>
@@ -481,9 +481,9 @@ const Index = () => {
             <div className="gsap-cta flex flex-col sm:flex-row gap-6 justify-center pt-4">
               <div className="transition-transform duration-300 hover:scale-105 active:scale-95">
                 <Button asChild size="lg" className="h-14 text-lg font-semibold px-10 shadow-[0_0_30px_rgba(255,215,0,0.3)] hover:shadow-[0_0_50px_rgba(255,215,0,0.5)] transition-shadow duration-300 w-full sm:w-auto">
-                  <a href="tel:662-310-3732">
+                  <a href="tel:1-877-460-1756">
                     <Phone className="h-5 w-5 mr-3 animate-pulse" />
-                    Call Now
+                    Call Now 1-877-460-1756
                   </a>
                 </Button>
               </div>

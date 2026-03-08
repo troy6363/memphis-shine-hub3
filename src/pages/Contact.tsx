@@ -43,7 +43,7 @@ const Contact = () => {
     } catch (error) {
       toast({
         title: "Something went wrong",
-        description: "Please try again or call us directly at (662) 310-3732.",
+        description: "Please try again or call us directly at 1-877-460-1756.",
         variant: "destructive",
       });
     } finally {
@@ -61,10 +61,10 @@ const Contact = () => {
     <Layout>
       <Helmet>
         <title>Contact Us | Gleam Mobile Detailing Memphis</title>
-        <meta name="description" content="Request a quote or call (662) 310-3732. Gleam Mobile Detailing serves Memphis, Cordova, Germantown, Collierville & the Mid-South with premium mobile auto detailing." />
+        <meta name="description" content="Request a quote or call 1-877-460-1756. Gleam Mobile Detailing serves Memphis, Cordova, Germantown, Collierville & the Mid-South with premium mobile auto detailing." />
         <link rel="canonical" href="https://gleammobiledetailing.com/contact" />
         <meta property="og:title" content="Contact Gleam Mobile Detailing Memphis" />
-        <meta property="og:description" content="Request a quote or call (662) 310-3732. Premium mobile auto detailing in Memphis & the Mid-South." />
+        <meta property="og:description" content="Request a quote or call 1-877-460-1756. Premium mobile auto detailing in Memphis & the Mid-South." />
         <meta property="og:url" content="https://gleammobiledetailing.com/contact" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
@@ -98,10 +98,10 @@ const Contact = () => {
                     <div>
                       <p className="text-sm text-muted-foreground">Call or Text</p>
                       <a
-                        href="tel:662-310-3732"
+                        href="tel:1-877-460-1756"
                         className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
                       >
-                        (662) 310-3732
+                        1-877-460-1756
                       </a>
                     </div>
                   </CardContent>

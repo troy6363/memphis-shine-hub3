@@ -282,9 +282,9 @@ const Services = () => {
             Call us and we'll help you choose the perfect service for your vehicle.
           </p>
           <Button asChild size="lg" className="font-semibold shadow-xl">
-            <a href="tel:662-310-3732">
+            <a href="tel:1-877-460-1756">
               <Phone className="h-5 w-5 mr-2" />
-              Call (662) 310-3732
+              Call 1-877-460-1756
             </a>
           </Button>
         </div>

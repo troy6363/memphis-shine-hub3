@@ -41,11 +41,11 @@ const ThankYou = () => {
                                 Need immediate assistance?
                             </p>
                             <a
-                                href="tel:662-310-3732"
+                                href="tel:1-877-460-1756"
                                 className="inline-flex items-center gap-2 text-lg font-semibold text-primary hover:text-primary/80 transition-colors mb-8"
                             >
                                 <Phone className="h-5 w-5" />
-                                (662) 310-3732
+                                1-877-460-1756
                             </a>
 
                             {/* Actions */}

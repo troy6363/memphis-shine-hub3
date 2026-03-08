@@ -105,9 +105,9 @@ const ServiceArea = () => {
                                 {data.description} Experience the convenience of professional car care that comes directly to you.
                             </p>
                             <Button asChild size="lg" className="text-lg">
-                                <a href="tel:662-310-3732">
+                                <a href="tel:1-877-460-1756">
                                     <Phone className="h-5 w-5 mr-2" />
-                                    Call Now (662) 310-3732
+                                    Call Now 1-877-460-1756
                                 </a>
                             </Button>
                         </motion.div>
@@ -228,8 +228,8 @@ const ServiceArea = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
                             <Button asChild size="lg" className="h-16 text-xl px-12">
-                                <a href="tel:662-310-3732">
-                                    Call or Text (662) 310-3732
+                                <a href="tel:1-877-460-1756">
+                                    Call or Text 1-877-460-1756
                                 </a>
                             </Button>
                             <Button asChild variant="outline" size="lg" className="h-16 text-xl px-12">
