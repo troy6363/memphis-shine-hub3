@@ -206,6 +206,7 @@ const Booking = () => {
                         style={{ minHeight: "1200px", background: "transparent" }}
                         loading="lazy"
                         allow="payment"
+                        onLoad={() => console.log("[DEBUG-GHL] Iframe loaded/reloaded")}
                         tabIndex={-1}
                     />
                 ) : (
