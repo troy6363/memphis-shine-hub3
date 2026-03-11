@@ -9,6 +9,15 @@ const Booking = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [showCalendar, setShowCalendar] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Monitor for URL changes that might be redirects failing to unmount
+    useEffect(() => {
+        console.log("[DEBUG-GHL] Location changed:", location.pathname + location.search + location.hash);
+        if (location.pathname.includes('thank-you')) {
+            console.log("[DEBUG-GHL] Direct path match for thank-you detected.");
+        }
+    }, [location]);
 
     // Listen for GHL messages to handle successful booking
     useEffect(() => {
@@ -16,51 +25,26 @@ const Booking = () => {
             // Log everything with a unique prefix for easy identification
             console.log("[DEBUG-GHL] Message received:", event.data);
 
-            // Check for specific GHL confirmation messages or indicators
-            let isConfirmed = false;
-            const data = event.data;
+            // Keywords to look for
+            const successKeywords = [
+                'confirmed', 'success', 'order-placed', 'booking-complete',
+                'appointment-confirmed', 'payment_success', 'thank-you',
+                'thankyou', 'placed', 'complete', 'done', 'thank'
+            ];
 
-            if (typeof data === 'string') {
-                const lowerData = data.toLowerCase();
-                if (
-                    lowerData.includes('confirmed') ||
-                    lowerData.includes('success') ||
-                    lowerData.includes('order-placed') ||
-                    lowerData.includes('booking-complete') ||
-                    lowerData.includes('appointment-confirmed') ||
-                    lowerData.includes('payment_success') ||
-                    lowerData.includes('thank-you') ||
-                    lowerData.includes('thankyou')
-                ) {
-                    isConfirmed = true;
+            const checkValue = (val: any): boolean => {
+                if (typeof val === 'string') {
+                    const lower = val.toLowerCase();
+                    return successKeywords.some(k => lower.includes(k));
                 }
-            } else if (data && typeof data === 'object') {
-                // Check all common GHL/Stripe event properties
-                const type = data.type || data.action || data.event || '';
-                const message = data.message || '';
-                const lowerType = String(type).toLowerCase();
-                const lowerMessage = String(message).toLowerCase();
-
-                if (
-                    lowerType.includes('confirmed') ||
-                    lowerType.includes('success') ||
-                    lowerType.includes('placed') ||
-                    lowerType.includes('complete') ||
-                    lowerType.includes('done') ||
-                    lowerMessage.includes('confirmed') ||
-                    lowerMessage.includes('success') ||
-                    lowerMessage.includes('thank') ||
-                    data.bookingConfirmed === true ||
-                    data.appointmentConfirmed === true ||
-                    data.payment_success === true ||
-                    data.status === 'success'
-                ) {
-                    isConfirmed = true;
+                if (typeof val === 'object' && val !== null) {
+                    return Object.values(val).some(v => checkValue(v));
                 }
-            }
+                return false;
+            };
 
-            if (isConfirmed) {
-                console.log("[DEBUG-GHL] SUCCESS DETECTED. Executing redirects...");
+            if (checkValue(event.data) || (event.data && event.data.status === 'success')) {
+                console.log("[DEBUG-GHL] SUCCESS DETECTED via recursive scan. Redirecting...");
                 // Double-tap redirect: React router first, then hard browser redirect
                 navigate('/thank-you');
                 setTimeout(() => {
@@ -77,7 +61,7 @@ const Booking = () => {
                 if (iframeRef.current && iframeRef.current.contentWindow) {
                     const iframeUrl = iframeRef.current.contentWindow.location.href;
                     // If we can read the URL, it means it's same-origin (redirected to our site)
-                    if (iframeUrl.includes('/thank-you') || iframeUrl.includes('confirmed')) {
+                    if (iframeUrl.includes('/thank-you') || iframeUrl.includes('thank') || iframeUrl.includes('confirm')) {
                         console.log("[DEBUG-GHL] Same-origin redirect detected via checkRedirect. Redirecting parent...");
                         navigate('/thank-you');
                         window.location.href = '/thank-you';
@@ -123,6 +107,7 @@ const Booking = () => {
 
     // Delay iframe render so GHL can't steal scroll on initial load
     useEffect(() => {
+        console.log("[DEBUG-GHL] Booking component mounted/re-mounted. Scrolling to top.");
         window.scrollTo(0, 0);
         const timer = setTimeout(() => {
             setShowCalendar(true);
