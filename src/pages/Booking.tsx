@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Layout from "@/components/layout/Layout";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 
 const Booking = () => {
