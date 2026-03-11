@@ -15,25 +15,43 @@ const Booking = () => {
             // Log everything for debugging
             console.log("GHL Message received:", event.data);
 
-            // Check for specific GHL confirmation messages
+            // Check for specific GHL confirmation messages or indicators
             let isConfirmed = false;
+            const data = event.data;
 
-            if (typeof event.data === 'string') {
-                if (event.data === 'appointment-confirmed' ||
-                    event.data === 'booking-confirmed' ||
-                    event.data.includes('confirmed')) {
+            if (typeof data === 'string') {
+                const lowerData = data.toLowerCase();
+                if (
+                    lowerData.includes('confirmed') ||
+                    lowerData.includes('success') ||
+                    lowerData.includes('order-placed') ||
+                    lowerData.includes('booking-complete') ||
+                    lowerData.includes('appointment-confirmed')
+                ) {
                     isConfirmed = true;
                 }
-            } else if (event.data && typeof event.data === 'object') {
-                if (event.data.type === 'appointment-confirmed' ||
-                    event.data.action === 'booking-confirmed' ||
-                    event.data.message === 'confirmed') {
+            } else if (data && typeof data === 'object') {
+                // Check all common GHL/Stripe event properties
+                const type = data.type || data.action || data.event || '';
+                const message = data.message || '';
+                const lowerType = String(type).toLowerCase();
+                const lowerMessage = String(message).toLowerCase();
+
+                if (
+                    lowerType.includes('confirmed') ||
+                    lowerType.includes('success') ||
+                    lowerType.includes('placed') ||
+                    lowerMessage.includes('confirmed') ||
+                    lowerMessage.includes('success') ||
+                    data.bookingConfirmed === true ||
+                    data.appointmentConfirmed === true
+                ) {
                     isConfirmed = true;
                 }
             }
 
             if (isConfirmed) {
-                console.log("SUCCESS: Booking confirmation detected. Redirecting...");
+                console.log("SUCCESS: Booking/Payment confirmation detected. Redirecting to Thank You page...");
                 navigate('/thank-you');
             }
         };
