@@ -181,7 +181,7 @@ const Booking = () => {
             </section>
 
             {/* Embedded GHL Calendar */}
-            <section className="w-full">
+            <section className="w-full relative">
                 {showCalendar ? (
                     <iframe
                         ref={iframeRef}
@@ -199,6 +199,21 @@ const Booking = () => {
                         <div className="animate-pulse text-muted-foreground">Loading calendar...</div>
                     </div>
                 )}
+
+                {/* TEMPORARY DEBUG BUTTON - REMOVE AFTER FIXING GHL */}
+                <div className="fixed bottom-4 right-4 z-[9999] opacity-20 hover:opacity-100 transition-opacity">
+                    <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => {
+                            console.log("[DEBUG-GHL] Manual Forced Redirect Clicked");
+                            navigate('/thank-you');
+                            window.location.href = '/thank-you';
+                        }}
+                    >
+                        DEBUG: Force Redirect (Skip GHL Hang)
+                    </Button>
+                </div>
             </section>
         </Layout>
     );
