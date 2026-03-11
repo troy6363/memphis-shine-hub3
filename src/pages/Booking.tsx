@@ -12,16 +12,28 @@ const Booking = () => {
     // Listen for GHL messages to handle successful booking
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
+            // Log everything for debugging
+            console.log("GHL Message received:", event.data);
+
             // Check for specific GHL confirmation messages
-            // Some GHL versions send strings, others send objects
-            const isConfirmed =
-                event.data === 'appointment-confirmed' ||
-                event.data === 'booking-confirmed' ||
-                (typeof event.data === 'string' && event.data.includes('confirmed')) ||
-                (event.data && event.data.type === 'appointment-confirmed');
+            let isConfirmed = false;
+
+            if (typeof event.data === 'string') {
+                if (event.data === 'appointment-confirmed' ||
+                    event.data === 'booking-confirmed' ||
+                    event.data.includes('confirmed')) {
+                    isConfirmed = true;
+                }
+            } else if (event.data && typeof event.data === 'object') {
+                if (event.data.type === 'appointment-confirmed' ||
+                    event.data.action === 'booking-confirmed' ||
+                    event.data.message === 'confirmed') {
+                    isConfirmed = true;
+                }
+            }
 
             if (isConfirmed) {
-                console.log("Booking confirmed message received:", event.data);
+                console.log("SUCCESS: Booking confirmation detected. Redirecting...");
                 navigate('/thank-you');
             }
         };
