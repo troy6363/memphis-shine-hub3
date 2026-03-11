@@ -13,8 +13,8 @@ const Booking = () => {
     // Listen for GHL messages to handle successful booking
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
-            // Log everything for debugging
-            console.log("GHL Message received:", event.data);
+            // Log everything with a unique prefix for easy identification
+            console.log("[DEBUG-GHL] Message received:", event.data);
 
             // Check for specific GHL confirmation messages or indicators
             let isConfirmed = false;
@@ -28,7 +28,9 @@ const Booking = () => {
                     lowerData.includes('order-placed') ||
                     lowerData.includes('booking-complete') ||
                     lowerData.includes('appointment-confirmed') ||
-                    lowerData.includes('payment_success')
+                    lowerData.includes('payment_success') ||
+                    lowerData.includes('thank-you') ||
+                    lowerData.includes('thankyou')
                 ) {
                     isConfirmed = true;
                 }
@@ -44,19 +46,26 @@ const Booking = () => {
                     lowerType.includes('success') ||
                     lowerType.includes('placed') ||
                     lowerType.includes('complete') ||
+                    lowerType.includes('done') ||
                     lowerMessage.includes('confirmed') ||
                     lowerMessage.includes('success') ||
+                    lowerMessage.includes('thank') ||
                     data.bookingConfirmed === true ||
                     data.appointmentConfirmed === true ||
-                    data.payment_success === true
+                    data.payment_success === true ||
+                    data.status === 'success'
                 ) {
                     isConfirmed = true;
                 }
             }
 
             if (isConfirmed) {
-                console.log("SUCCESS: Booking/Payment confirmation detected via message. Redirecting...");
+                console.log("[DEBUG-GHL] SUCCESS DETECTED. Executing redirects...");
+                // Double-tap redirect: React router first, then hard browser redirect
                 navigate('/thank-you');
+                setTimeout(() => {
+                    window.location.href = '/thank-you';
+                }, 100);
             }
         };
 
@@ -68,14 +77,15 @@ const Booking = () => {
                 if (iframeRef.current && iframeRef.current.contentWindow) {
                     const iframeUrl = iframeRef.current.contentWindow.location.href;
                     // If we can read the URL, it means it's same-origin (redirected to our site)
-                    if (iframeUrl.includes('/thank-you')) {
-                        console.log("SUCCESS: Iframe redirect to same-origin detected. Redirecting parent...");
+                    if (iframeUrl.includes('/thank-you') || iframeUrl.includes('confirmed')) {
+                        console.log("[DEBUG-GHL] Same-origin redirect detected via checkRedirect. Redirecting parent...");
                         navigate('/thank-you');
+                        window.location.href = '/thank-you';
                         clearInterval(checkRedirect);
                     }
                 }
             } catch (e) {
-                // Ignore cross-origin errors (expected while on GHL domain)
+                // Ignore cross-origin errors
             }
         }, 1000);
 
