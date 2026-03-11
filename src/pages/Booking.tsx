@@ -1,12 +1,34 @@
 import { Helmet } from "react-helmet";
 import Layout from "@/components/layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const Booking = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [showCalendar, setShowCalendar] = useState(false);
+    const navigate = useNavigate();
+
+    // Listen for GHL messages to handle successful booking
+    useEffect(() => {
+        const handleMessage = (event: MessageEvent) => {
+            // Check for specific GHL confirmation messages
+            // Some GHL versions send strings, others send objects
+            const isConfirmed =
+                event.data === 'appointment-confirmed' ||
+                event.data === 'booking-confirmed' ||
+                (typeof event.data === 'string' && event.data.includes('confirmed')) ||
+                (event.data && event.data.type === 'appointment-confirmed');
+
+            if (isConfirmed) {
+                console.log("Booking confirmed message received:", event.data);
+                navigate('/thank-you');
+            }
+        };
+
+        window.addEventListener('message', handleMessage);
+        return () => window.removeEventListener('message', handleMessage);
+    }, [navigate]);
 
     // Video slow-motion + fade effect
     useEffect(() => {
