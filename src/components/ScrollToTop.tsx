@@ -5,7 +5,6 @@ export default function ScrollToTop() {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        console.log("[DEBUG-GHL] ScrollToTop triggered for path:", pathname);
         window.scrollTo(0, 0);
     }, [pathname]);
 

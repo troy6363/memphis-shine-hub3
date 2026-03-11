@@ -17,14 +17,16 @@ const Booking = () => {
         console.log("[DEBUG-GHL] Location changed:", location.pathname + location.search + location.hash);
         if (location.pathname.includes('thank-you')) {
             console.log("[DEBUG-GHL] Direct path match for thank-you detected.");
+            console.log("Direct path match for thank-you detected.");
         }
     }, [location]);
 
     // Listen for GHL messages to handle successful booking
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
-            // Log everything with a unique prefix for easy identification
-            console.log("[DEBUG-GHL] Message received:", event.data);
+            // Check for specific GHL confirmation messages or indicators
+            const data = event.data;
+            // console.log("Message received:", event.data);
 
             // Keywords to look for
             const successKeywords = [
@@ -45,7 +47,7 @@ const Booking = () => {
             };
 
             if (checkValue(event.data) || (event.data && event.data.status === 'success')) {
-                console.log("[DEBUG-GHL] SUCCESS DETECTED via recursive scan. Redirecting...");
+                console.log("Booking confirmation detected via message. Redirecting...");
                 // Double-tap redirect: React router first, then hard browser redirect
                 navigate('/thank-you');
                 setTimeout(() => {
@@ -63,7 +65,7 @@ const Booking = () => {
                     const iframeUrl = iframeRef.current.contentWindow.location.href;
                     // If we can read the URL, it means it's same-origin (redirected to our site)
                     if (iframeUrl.includes('/thank-you') || iframeUrl.includes('thank') || iframeUrl.includes('confirm')) {
-                        console.log("[DEBUG-GHL] Same-origin redirect detected via checkRedirect. Redirecting parent...");
+                        console.log("Iframe redirect to same-origin detected. Redirecting parent...");
                         navigate('/thank-you');
                         window.location.href = '/thank-you';
                         clearInterval(checkRedirect);
@@ -108,7 +110,6 @@ const Booking = () => {
 
     // Delay iframe render so GHL can't steal scroll on initial load
     useEffect(() => {
-        console.log("[DEBUG-GHL] Booking component mounted/re-mounted. Scrolling to top.");
         window.scrollTo(0, 0);
         const timer = setTimeout(() => {
             setShowCalendar(true);
@@ -192,7 +193,7 @@ const Booking = () => {
                         style={{ minHeight: "1200px", background: "transparent" }}
                         loading="lazy"
                         allow="payment"
-                        onLoad={() => console.log("[DEBUG-GHL] Iframe loaded/reloaded")}
+                        onLoad={() => console.log("Iframe loaded/reloaded")}
                         tabIndex={-1}
                     />
                 ) : (
@@ -200,21 +201,6 @@ const Booking = () => {
                         <div className="animate-pulse text-muted-foreground">Loading calendar...</div>
                     </div>
                 )}
-
-                {/* TEMPORARY DEBUG BUTTON - REMOVE AFTER FIXING GHL */}
-                <div className="fixed bottom-4 right-4 z-[9999] opacity-20 hover:opacity-100 transition-opacity">
-                    <Button
-                        variant="destructive"
-                        size="sm"
-                        onClick={() => {
-                            console.log("[DEBUG-GHL] Manual Forced Redirect Clicked");
-                            navigate('/thank-you');
-                            window.location.href = '/thank-you';
-                        }}
-                    >
-                        DEBUG: Force Redirect (Skip GHL Hang)
-                    </Button>
-                </div>
             </section>
         </Layout>
     );
