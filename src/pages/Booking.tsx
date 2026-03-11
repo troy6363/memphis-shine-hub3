@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Booking = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const iframeRef = useRef<HTMLIFrameElement>(null);
     const [showCalendar, setShowCalendar] = useState(false);
     const navigate = useNavigate();
 
@@ -26,7 +27,8 @@ const Booking = () => {
                     lowerData.includes('success') ||
                     lowerData.includes('order-placed') ||
                     lowerData.includes('booking-complete') ||
-                    lowerData.includes('appointment-confirmed')
+                    lowerData.includes('appointment-confirmed') ||
+                    lowerData.includes('payment_success')
                 ) {
                     isConfirmed = true;
                 }
@@ -41,23 +43,46 @@ const Booking = () => {
                     lowerType.includes('confirmed') ||
                     lowerType.includes('success') ||
                     lowerType.includes('placed') ||
+                    lowerType.includes('complete') ||
                     lowerMessage.includes('confirmed') ||
                     lowerMessage.includes('success') ||
                     data.bookingConfirmed === true ||
-                    data.appointmentConfirmed === true
+                    data.appointmentConfirmed === true ||
+                    data.payment_success === true
                 ) {
                     isConfirmed = true;
                 }
             }
 
             if (isConfirmed) {
-                console.log("SUCCESS: Booking/Payment confirmation detected. Redirecting to Thank You page...");
+                console.log("SUCCESS: Booking/Payment confirmation detected via message. Redirecting...");
                 navigate('/thank-you');
             }
         };
 
         window.addEventListener('message', handleMessage);
-        return () => window.removeEventListener('message', handleMessage);
+
+        // Fallback: Detect if iframe redirects to our own domain (requires GHL Redirect URL setting)
+        const checkRedirect = setInterval(() => {
+            try {
+                if (iframeRef.current && iframeRef.current.contentWindow) {
+                    const iframeUrl = iframeRef.current.contentWindow.location.href;
+                    // If we can read the URL, it means it's same-origin (redirected to our site)
+                    if (iframeUrl.includes('/thank-you')) {
+                        console.log("SUCCESS: Iframe redirect to same-origin detected. Redirecting parent...");
+                        navigate('/thank-you');
+                        clearInterval(checkRedirect);
+                    }
+                }
+            } catch (e) {
+                // Ignore cross-origin errors (expected while on GHL domain)
+            }
+        }, 1000);
+
+        return () => {
+            window.removeEventListener('message', handleMessage);
+            clearInterval(checkRedirect);
+        };
     }, [navigate]);
 
     // Video slow-motion + fade effect
@@ -164,6 +189,7 @@ const Booking = () => {
             <section className="w-full">
                 {showCalendar ? (
                     <iframe
+                        ref={iframeRef}
                         src="https://api.smartwebmemphis.com/booking/n6jsbtFEZSPGQpPA0OP6"
                         title="Book a Detail - Gleam Mobile Detailing"
                         className="w-full border-0"
