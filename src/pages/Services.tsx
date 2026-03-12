@@ -238,7 +238,7 @@ const Services = () => {
                     </div>
                   </div>
                   <Button asChild className="w-full mt-8" variant={pkg.popular ? "default" : "outline"}>
-                    <Link to="/booking">Book This Package</Link>
+                    <a href="https://book.gleammobiledetailing.com/book">Book This Package</a>
                   </Button>
                 </CardContent>
               </Card>

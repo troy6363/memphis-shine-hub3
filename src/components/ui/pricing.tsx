@@ -279,7 +279,7 @@ export default function PricingSection5() {
                             </CardHeader>
 
                             <CardContent className="pt-0 flex-grow flex flex-col justify-end">
-                                <Link to="/booking" className="w-full">
+                                <a href="https://book.gleammobiledetailing.com/book" className="w-full">
                                     <button
                                         className={`w-full mb-6 p-4 text-lg rounded-xl transition-[background-color,border-color,color,box-shadow,filter] duration-300 ${plan.popular
                                             ? "bg-gradient-to-t from-primary to-primary/80 shadow-lg shadow-primary/20 border border-primary text-primary-foreground hover:brightness-110"
@@ -288,7 +288,7 @@ export default function PricingSection5() {
                                     >
                                         {plan.buttonText}
                                     </button>
-                                </Link>
+                                </a>
 
                                 <div className="space-y-3 pt-4 border-t border-border">
                                     <h4 className="font-medium text-base text-foreground mb-3">
