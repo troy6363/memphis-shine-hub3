@@ -20,7 +20,7 @@ import { chromium } from 'playwright';
         // The widget injects an iframe or div. We can check for the script or the resulting element.
         // The script puts a shadow host or iframe usually.
         // Let's check for the script tag
-        const script = await page.$('script[data-widget-id="699344d9afdea0253915f58e"]');
+        const script = await page.$('script[data-widget-id="69ab873a03fc837e472b70a9"]');
         if (script) {
             console.log("SUCCESS: Chat widget script found in DOM.");
         } else {
